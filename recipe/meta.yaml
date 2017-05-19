@@ -10,6 +10,7 @@ source:
   sha256: e1a133e582f0b4652a6b00bac970b446d90580664e5a634a670731c990ff9f05
 
 build:
+  skip: True  # [py3k]
   number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
   preserve_egg_dir: True
