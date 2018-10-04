@@ -5,22 +5,20 @@ package:
   version: {{ version }}
 
 source:
-  fn: pykml-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/p/pykml/pykml-{{ version }}.tar.gz
   sha256: e1a133e582f0b4652a6b00bac970b446d90580664e5a634a670731c990ff9f05
 
 build:
-  skip: True  # [py3k]
-  number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
-  preserve_egg_dir: True
+  number: 1
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
-  build:
-    - python
-    - setuptools
+  host:
+    - python <3
+    - pip
   run:
-    - python
+    - python <3
     - lxml >=2.2.6
 
 test:
@@ -28,10 +26,10 @@ test:
     - pykml
 
 about:
-  home: http://pypi.python.org/pypi/pykml
-  license: BSD 3-Clause
+  home: http://pypi.io/pypi/pykml
+  license: BSD-3-Clause
   license_file: LICENSE.txt
-  summary: 'Python KML library.'
+  summary: 'Python KML library'
 
 extra:
   recipe-maintainers:
