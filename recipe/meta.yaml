@@ -9,17 +9,17 @@ source:
   sha256: 44a1892e7c2a649c8ae9f8e2899ff76cae79ec6749ffb64d11140b4e87d0f957
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python <3
+    - python
     - pip
   run:
-    - python <3
-    - lxml >=2.2.6
+    - python
+    - lxml >=3.3.6
 
 test:
   imports:
