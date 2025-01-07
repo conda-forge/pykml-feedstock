@@ -5,23 +5,26 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pykml/pykml-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/pykml/pykml-{{ version }}.tar.gz
   sha256: 44a1892e7c2a649c8ae9f8e2899ff76cae79ec6749ffb64d11140b4e87d0f957
 
 build:
-  number: 1
+  number: 2
   noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=2.7
+    - python {{ python_min }}
+    - setuptools
     - pip
   run:
-    - python >=2.7
+    - python >={{ python_min }}
     - lxml >=3.3.6
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - pykml
 
